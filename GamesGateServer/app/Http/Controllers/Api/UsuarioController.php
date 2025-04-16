@@ -79,9 +79,49 @@ class UsuarioController extends Controller
     }
 
     // Função para Atualizar dados de um Usuário já cadastrado
-    public function update()
+    public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|string|max:255',
+            'login'=>'required|string|max:255',
+            'email'=>'required|string|max:255|unique:users,email',
+            'password'=>'sometimes|required|string|min:8',
+            'datanascimento'=>'required|datetime',
+            'datalogin'=>'datetime',
+            'descricao'=>'string',
+            'status'=>'string',
+        ]);
 
+        if ($validator->fails())
+        {
+            return response()->json([
+                'message'=>'Erro nas informações do usuário',
+                'status'=>404,
+                'erros'=>$validator->errors()
+            ],404);
+        }
+
+        $data = User::Find($id);
+        $data->name = $request->name ?? $data->name;
+        $data->login = $request->login ?? $data->login;
+        $data->email = $request->email ?? $data->email;
+        $data->datanascimento = $request->datanascimento ?? $data->datanascimento;
+        $data->datalogin = $request->datalogin ?? $data->datalogin;
+        $data->descricao = $request->descricao ?? $data->descricao;
+        $data->status = $request->status ?? $data->status;
+
+        if ($request->has('password'))
+        {
+            $data->password = Hash::make($request->password);
+        }
+        
+        $data->save();
+
+        return response()->json([
+            'message'=>'Usuário atualizado com sucesso',
+            'status'=>201,
+            'data'=>$data
+        ],201);
     }
 
     // Função para Apagar um Usuário do Banco de Dados
