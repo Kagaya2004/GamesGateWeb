@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\HttpRequestException;
+use App\Models\User;
 
 class UsuarioController extends Controller
 {
@@ -23,8 +27,8 @@ class UsuarioController extends Controller
             'login'=>'required|string|max:255',
             'email'=>'required|string|max:255|unique:users,email',
             'password'=>'sometimes|required|string|min:8',
-            'datanascimento'=>'required|datetime',
-            'datalogin'=>'datetime',
+            'datanascimento'=>'required|string',
+            'datalogin'=>'string',
             'descricao'=>'string',
             'status'=>'string',
         ]);
@@ -61,18 +65,17 @@ class UsuarioController extends Controller
     {
         try
         {
-            $data = User::findOrfail($id);
+            $data = User::findOrFail($id);
         }
-        catch (HttpResponseException $e)
-        {
+        catch(HttpResponseException $e){
             response()->json([
-                'message'=>$e->GetMessage(),
+                'message'=>$e->getMessage(),
                 'status'=>404
             ],404);
         }
 
         return response()->json([
-            'message'=>'Usuário encontrado com sucesso',
+            'message'=>"Usuário encontrado com sucesso",
             'status'=>200,
             'data'=>$data
         ],200);
