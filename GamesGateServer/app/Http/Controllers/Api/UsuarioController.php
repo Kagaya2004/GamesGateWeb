@@ -13,10 +13,41 @@ class UsuarioController extends Controller
 {
     public function index()
     {
+        // Configurações da Paginação
+        $page = $request->get('page', '1'); // Página Inicial
+        $pageSize = $request->get('pageSize', '10'); // Tamanho de Página (Quantos registros numa página)
+        $dir = $request->get('dir', 'asc'); // Direção (Crescente ou Decrecente)
+        $props = $request->get('props', 'id'); // Propriedades
+        $search = $request->get('search', ''); // Pesquisa
+
+        // Seleciona os dados do usuário
+        $query = User::select('id', 'name', 'email', 'created_at', 'updated_at')
+            ->whereNull('deleted_at')
+            ->orderBy($props, $dir);
+        
+        // Quantidade de Registros
+        $total = $query->count();
+
+        // O número de registros na página
+        $data = $query->offset(($page-1) * $pageSize)
+            ->limit($pageSize)
+            ->get();
+
+        // Quantidade de Páginas
+        $totalPages = ceil($total / $pageSize);
+
         return response()->json([
-            'message'=>'Acessando Controlador de Usuário',
-            'status'=>200
-        ],200);
+            'message' => 'Registro de Usuários',
+            'status' => 200,
+            'page' => $page,
+            'pageSize' => $pageSize,
+            'dir' => $dir,
+            'props' => $props,
+            'search' => $search,
+            'total' => $total,
+            'totalPages' => $totalPages,
+            'data' => $data,
+         ], 200);
     }
 
     // Função para cadastrar Usuário
@@ -88,9 +119,9 @@ class UsuarioController extends Controller
             'name'=>'required|string|max:255',
             'login'=>'required|string|max:255',
             'email'=>'required|string|max:255|unique:users,email',
-            'password'=>'sometimes|required|string|min:8',
-            'datanascimento'=>'required|datetime',
-            'datalogin'=>'datetime',
+            //'password'=>'sometimes|required|string|min:8',
+            'datanascimento'=>'required|string',
+            'datalogin'=>'string',
             'descricao'=>'string',
             'status'=>'string',
         ]);
