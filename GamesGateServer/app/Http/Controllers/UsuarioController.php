@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Suport\Facades\Validator;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Models\User;
 
 class UsuarioController extends Controller
 {
