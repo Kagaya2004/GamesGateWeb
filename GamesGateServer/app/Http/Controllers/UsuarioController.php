@@ -12,15 +12,10 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'message'=>'Acessando ao Controlador',
+            'status'=>200
+        ], 200);
     }
 
     /**
@@ -28,7 +23,44 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|string|max:255',
+            'email'=>'required|email|string|max:255|unique:users,email',
+            'login'=>'required|string|max:255|unique:users,login',
+            'password'=>'sometimes|required|string|min:6',
+            'descricao'=>'required|string'->nullable(),
+            'dataNascimento'=>'required|datetime',
+            'dataLogin'=>'timestamp'->nullable(),
+            'dataCriacao'=>'timestamp'->nullable(),
+            'status'=>'string'->nullable()
+        ]);
+
+        if ($validator->fails())
+        {
+            return response()->json([
+                'message'=>'Erro nas informações do usuário',
+                'status'=>404,
+                'errors'=>$validator->errors()
+            ], 404);
+        }
+
+        $data = User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'login'=>$request->login,
+            'password'=>Hash::make($request->password),
+            'descricao'=>$request->descricao,
+            'dataNascimento'=>$request->dataNascimento,
+            'dataLogin'=>$request->dataLogin,
+            'dataCriacao'=>$request->dataCriacao,
+            'status'=>$request->status,
+        ]);
+
+        return response()->json([
+            'message'=>'Usuário cadastro com sucesso',
+            'status'=>200,
+            'data'=>$data
+        ], 200);
     }
 
     /**
@@ -36,15 +68,23 @@ class UsuarioController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        try
+        {
+            $data = User::findOrfail($id);
+        }
+        catch (HttpResponseException $e)
+        {
+            response()->json([
+                'message'=>$e->getMessage(),
+                'status'=>404
+            ], 404);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return response()->json([
+            'message'=>'Usuário encontrado com sucesso',
+            'status'=>200,
+            'data'=>$data
+        ], 200);
     }
 
     /**
@@ -52,7 +92,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**
@@ -60,6 +100,21 @@ class UsuarioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = User::find($id);
+
+        if (!$data)
+        {
+            return response()->json([
+                'message'=>'Usuário não encontrado',
+                'status'=>404
+            ], 404);
+        }
+
+        $data->delete();
+
+        return response()->json([
+            'message'=>'Usuário deletado com sucesso',
+            'status'=>200
+        ], 200);
     }
 }
