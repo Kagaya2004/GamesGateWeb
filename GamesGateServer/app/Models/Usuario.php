@@ -20,7 +20,6 @@ class Usuario extends Model
         'password',
         'login',
         'dataNascimento',
-        'dataCriacao',
         'dataLogin',
         'descricao',
         'status'
