@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Suport\Facades\Validator;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use App\Models\User;
+ use Illuminate\Http\Request;
+ use Illuminate\Support\Facades\Hash;
+ use Illuminate\Support\Facades\Validator;
+ use Symfony\Component\HttpKernel\Exception\HttpException;
+ use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -32,11 +32,11 @@ class UsuarioController extends Controller
             'email'=>'required|email|string|max:255|unique:users,email',
             'login'=>'required|string|max:255|unique:users,login',
             'password'=>'sometimes|required|string|min:6',
-            'descricao'=>'required|string'->nullable(),
+            'descricao'=>'required|string',
             'dataNascimento'=>'required|datetime',
-            'dataLogin'=>'timestamp'->nullable(),
-            'dataCriacao'=>'timestamp'->nullable(),
-            'status'=>'string'->nullable()
+            'dataLogin'=>'timestamps',
+            'dataCriacao'=>'timestamps',
+            'status'=>'string'
         ]);
 
         if ($validator->fails())
