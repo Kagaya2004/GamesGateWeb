@@ -35,7 +35,6 @@ class UsuarioController extends Controller
             'descricao'=>'required|string',
             'dataNascimento'=>'required|date',
             'dataLogin'=>'date',
-            'dataCriacao'=>'date',
             'status'=>'string'
         ]);
 
@@ -56,7 +55,6 @@ class UsuarioController extends Controller
             'descricao'=>$request->descricao,
             'dataNascimento'=>$request->dataNascimento,
             'dataLogin'=>$request->dataLogin,
-            'dataCriacao'=>$request->dataCriacao,
             'status'=>$request->status,
         ]);
 
@@ -96,7 +94,55 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        $validator = Validator::make($request->all(),[
+            'name'=>'sometimes|required|string|max:255',
+            'email'=>'sometimes|required|email|string|max:255|unique:users,email',
+            'username'=>'sometimes|required|string|max:255|unique:users,username',
+            'password'=>'sometimes|required|string|min:6',
+            'descricao'=>'sometimes|string',
+            'dataNascimento'=>'sometimes|date',
+            'dataLogin'=>'date',
+            'status'=>'sometimes|string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message'=>'Erro nas informações do usuário',
+                'status'=>404,
+                'errors'=>$validator->errors()
+            ],404);
+        }
+        // pega o id do usuário no banco de dados
+        $data = Usuario::Find($id);
+
+        if (!$data)
+        {
+            return response()->json([
+                'message'=>'Usuário não localizado',
+                'data'=>$id,
+                'status'=>404
+            ],404);
+        }
+
+        $data->name = $request->name ?? $data->name;
+        $data->email = $request->email ?? $data->email;
+        $data->username = $request->username ?? $data->username;
+        $data->descricao = $request->descricao ?? $data->descricao;
+        $data->dataNascimento = $request->dataNascimento ?? $data->dataNascimento;
+        $data->dataLogin = $request->dataLogin ?? $data->dataLogin;
+        $data->status = $request->status ?? $data->status;
+
+        if ($request->has('password')) {
+            $data->password = Hash::make($request->password);
+        }
+
+        $data->save();
+
+        return response()->json([
+            'message'=>'Usuário alterado com sucesso',
+            'status'=>201,
+            'data'=>$data
+        ],200);
     }
 
     /**

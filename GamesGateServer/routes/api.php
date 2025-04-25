@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 Route::get('/user/index', [UsuarioController::class, 'index']);
 Route::get('/user/show/{id}', [UsuarioController::class, 'show']);
 Route::post('/user/store', [UsuarioController::class, 'store']);
+Route::put('/user/update/{id}', [UsuarioController::class, 'update']);
 Route::delete('/user/destroy/{id}', [UsuarioController::class, 'destroy']);
