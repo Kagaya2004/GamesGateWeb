@@ -30,12 +30,12 @@ class UsuarioController extends Controller
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
             'email'=>'required|email|string|max:255|unique:users,email',
-            'login'=>'required|string|max:255|unique:users,login',
+            'username'=>'required|string|max:255|unique:users,username',
             'password'=>'sometimes|required|string|min:6',
             'descricao'=>'required|string',
-            'dataNascimento'=>'required|datetime',
-            'dataLogin'=>'timestamps',
-            'dataCriacao'=>'timestamps',
+            'dataNascimento'=>'required|date',
+            'dataLogin'=>'date',
+            'dataCriacao'=>'date',
             'status'=>'string'
         ]);
 
@@ -48,10 +48,10 @@ class UsuarioController extends Controller
             ], 404);
         }
 
-        $data = User::create([
+        $data = Usuario::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'login'=>$request->login,
+            'username'=>$request->username,
             'password'=>Hash::make($request->password),
             'descricao'=>$request->descricao,
             'dataNascimento'=>$request->dataNascimento,
@@ -74,7 +74,7 @@ class UsuarioController extends Controller
     {
         try
         {
-            $data = User::findOrfail($id);
+            $data = Usuario::findOrfail($id);
         }
         catch (HttpResponseException $e)
         {
@@ -104,7 +104,7 @@ class UsuarioController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = User::find($id);
+        $data = Usuario::find($id);
 
         if (!$data)
         {
