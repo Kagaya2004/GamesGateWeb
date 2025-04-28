@@ -14,12 +14,37 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $page = $request->get('page', '1');
+        $pageSize = $request->get('pageSize', '10');
+        $dir = $request->get('dir', 'asc');
+        $props = $request->get('props', 'id');
+        $search = $request->get('search', '');
+
+        $query = Usuario::select('id', 'name', 'username', 
+        'email', 'descricao', 'dataNascimento', 'status')
+            ->whereNull('deleted_at')
+            ->OrderBy($props, $dir);
+
+        $total = $query->offset(($page - 1) * $pageSize)
+            ->limit($pageSize)
+            ->get();
+
+        $totalPages = ceil($total / $pageSize);
+
         return response()->json([
-            'message'=>'Acessando ao Controlador',
-            'status'=>200
-        ], 200);
+            'message'=>'Relatório de Usuários',
+            'status'=>'Relatório de usuários',
+            'page'=>$page,
+            'pageSize'=>$pageSize,
+            'dir'=>$dir,
+            'props'=>$props,
+            'search'=>$serach,
+            'total'=>$total,
+            'totalPages'=>$totalPages,
+            'data'=>$data
+        ],200);
     }
 
     /**
