@@ -17,7 +17,7 @@ class UsuarioController extends Controller
     public function index(Request $request)
     {
         $page = $request->get('page', '1');
-        $pageSize = $request->get('pageSize', '10');
+        $pageSize = $request->get('pageSize', '5');
         $dir = $request->get('dir', 'asc');
         $props = $request->get('props', 'id');
         $search = $request->get('search', '');
@@ -26,6 +26,8 @@ class UsuarioController extends Controller
         'email', 'descricao', 'dataNascimento', 'status')
             ->whereNull('deleted_at')
             ->OrderBy($props, $dir);
+
+        $total = $query->count();
 
         $total = $query->offset(($page - 1) * $pageSize)
             ->limit($pageSize)
