@@ -22,27 +22,26 @@ class UsuarioController extends Controller
         $props = $request->get('props', 'id');
         $search = $request->get('search', '');
 
-        $query = Usuario::select('id', 'name', 'username', 
-        'email', 'descricao', 'dataNascimento', 'status')
+        $query = Usuario::select('id', 'nome', 'username', 'email', 'descricao', 'dataNascimento', 'status')
             ->whereNull('deleted_at')
             ->OrderBy($props, $dir);
 
         $total = $query->count();
 
-        $total = $query->offset(($page - 1) * $pageSize)
+        $data = $query->offset(($page - 1) * $pageSize)
             ->limit($pageSize)
             ->get();
-
+        
         $totalPages = ceil($total / $pageSize);
 
         return response()->json([
             'message'=>'Relatório de Usuários',
-            'status'=>'Relatório de usuários',
+            'status'=>200,
             'page'=>$page,
             'pageSize'=>$pageSize,
             'dir'=>$dir,
             'props'=>$props,
-            'search'=>$serach,
+            'search'=>$search,
             'total'=>$total,
             'totalPages'=>$totalPages,
             'data'=>$data
@@ -55,9 +54,9 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name'=>'required|string|max:255',
-            'email'=>'required|email|string|max:255|unique:users,email',
-            'username'=>'required|string|max:255|unique:users,username',
+            'nome'=>'required|string|max:255',
+            'email'=>'required|email|string|max:255|unique:usuarios,email',
+            'username'=>'required|string|max:255|unique:usuarios,username',
             'password'=>'sometimes|required|string|min:6',
             'descricao'=>'required|string',
             'dataNascimento'=>'required|date',
@@ -75,7 +74,7 @@ class UsuarioController extends Controller
         }
 
         $data = Usuario::create([
-            'name'=>$request->name,
+            'nome'=>$request->nome,
             'email'=>$request->email,
             'username'=>$request->username,
             'password'=>Hash::make($request->password),
@@ -122,9 +121,9 @@ class UsuarioController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(),[
-            'name'=>'sometimes|required|string|max:255',
-            'email'=>'sometimes|required|email|string|max:255|unique:users,email',
-            'username'=>'sometimes|required|string|max:255|unique:users,username',
+            'nome'=>'sometimes|required|string|max:255',
+            'email'=>'sometimes|required|email|string|max:255|unique:usuarios,email',
+            'username'=>'sometimes|required|string|max:255|unique:usuarios,username',
             'password'=>'sometimes|required|string|min:6',
             'descricao'=>'sometimes|string',
             'dataNascimento'=>'sometimes|date',
@@ -151,7 +150,7 @@ class UsuarioController extends Controller
             ],404);
         }
 
-        $data->name = $request->name ?? $data->name;
+        $data->nome = $request->nome ?? $data->nome;
         $data->email = $request->email ?? $data->email;
         $data->username = $request->username ?? $data->username;
         $data->descricao = $request->descricao ?? $data->descricao;
