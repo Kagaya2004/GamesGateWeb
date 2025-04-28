@@ -8,8 +8,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/user/index', [UsuarioController::class, 'index']);
-Route::get('/user/show/{id}', [UsuarioController::class, 'show']);
-Route::post('/user/store', [UsuarioController::class, 'store']);
-Route::put('/user/update/{id}', [UsuarioController::class, 'update']);
-Route::delete('/user/destroy/{id}', [UsuarioController::class, 'destroy']);
+Route::prefix('/user')->group(function(){
+    Route::get('/index', [UsuarioController::class, 'index']);
+    Route::get('/show/{id}', [UsuarioController::class, 'show']);
+    Route::post('/store', [UsuarioController::class, 'store']);
+    Route::put('/update/{id}', [UsuarioController::class, 'update']);
+    Route::delete('/destroy/{id}', [UsuarioController::class, 'destroy']);
+});
