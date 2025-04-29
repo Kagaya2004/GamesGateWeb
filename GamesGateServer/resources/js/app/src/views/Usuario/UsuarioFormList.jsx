@@ -1,7 +1,6 @@
-import React from 'react'
 import React, { useEffect, useState } from 'react'
- import axiosClient from '../../axiosClient';
- import { data, Link } from 'react-router-dom';
+import axiosClient from '../../axiosClient';
+import { data, Link } from 'react-router-dom';
  
  function UsuarioFormList() {
   const [Usuarios, setUsuarios] = React.useState([]);
