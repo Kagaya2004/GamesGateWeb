@@ -9,11 +9,11 @@ import UsuarioFormDestroy from '../views/Usuario/UsuarioFormDestroy'
 const Rotas = () => {
 return (
     <Routes>
-        <Route path="/user/index" element={<UsuarioFormList/>} />
-        <Route path="/user/store" element={<UsuarioFormStore/>} />
-        <Route path="/user/update:id" element={<UsuarioFormUpdate/>} />
-        <Route path="/user/show:id" element={<UsuarioFormShow/>} />
-        <Route path="/user/destroy:id" element={<UsuarioFormDestroy/>} />
+        <Route path="/usuario/index" element={<UsuarioFormList/>} />
+        <Route path="/usuario/store" element={<UsuarioFormStore/>} />
+        <Route path="/usuario/update:id" element={<UsuarioFormUpdate/>} />
+        <Route path="/usuario/show:id" element={<UsuarioFormShow/>} />
+        <Route path="/usuario/destroy:id" element={<UsuarioFormDestroy/>} />
     </Routes>
 )
 }
