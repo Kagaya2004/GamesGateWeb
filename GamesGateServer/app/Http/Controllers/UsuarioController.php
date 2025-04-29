@@ -22,7 +22,7 @@ class UsuarioController extends Controller
         $props = $request->get('props', 'id');
         $search = $request->get('search', '');
 
-        $query = Usuario::select('id', 'nome', 'username', 'email', 'descricao', 'dataNascimento', 'status')
+        $query = Usuario::select("*")
             ->whereNull('deleted_at')
             ->OrderBy($props, $dir);
 
