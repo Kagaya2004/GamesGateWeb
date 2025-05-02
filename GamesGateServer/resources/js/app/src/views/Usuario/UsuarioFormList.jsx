@@ -3,7 +3,7 @@ import axiosClient from '../../axiosClient';
 import { data, Link } from 'react-router-dom';
  
  function UsuarioFormList() {
-  const [Usuarios, setUsuarios] = React.useState([]);
+  const [Usuarios, setUsuario] = React.useState([]);
  
   const getUsuarios = () => {
     axiosClient.get('/usuario/index')
@@ -51,7 +51,7 @@ import { data, Link } from 'react-router-dom';
 
                     <td>{usuario.id}</td>
 
-                    <td>{usuario.name}</td>
+                    <td>{usuario.nome}</td>
 
                     <td>{usuario.email}</td>
 
