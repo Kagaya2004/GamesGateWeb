@@ -1,131 +1,162 @@
-*
-{
+* {
   box-sizing: border-box;
   margin: 0;
 }
 
-html, body {
-  min-height: 100vh;
+html, body{
+    min-height: 100vh;
 }
-body {
-  font-family: 'Arial', Helvetic, sans-serif;
+
+h1, h2, h3, h4, h5, h6, p{
+  margin: 0;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   font-size: 14px;
-  color: #0B2545;
-  background-color: #EEF4ED;
-}
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
+  color: #212121;
+  background-color: #f6f6f6
 }
 
-.btn, .btn-add, .btn-edit, .btn-delete, .btn-show {
+.btn
+.btn-add,
+.btn-edit,
+.btn-delete,
+.btn-show
+.btn-cancel{
+  font-family: Arial, Helvetica, sans-serif;
   outline: 0;
+  background: #5608a7;
   border: 0;
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 5px;
   text-decoration: none;
-  color: #EEF4ED;
-  background-color: #134074;
-  transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  color: #ffffff;
   font-size: 18px;
-  cursor: pointer;;
+  cursor:pointer;
+}
 
-  /* 
-   1 rm == 16px
-   1em == 16px
- */
+.btn-block{
+  width: 100%;
+}
 
-.btn-add, .btn-edit, .btn-delete, .btn-show, btn-cancel{
+/* 1rem = 16px*/
+/* 1em = 16px*/
+
+input {
+  outline:0;
+  background: #fff;
+  width:100%;
+  border: 3px solid #e6e6e6;
+  margin: 0 0 15px;
+  padding: 10px;
+  font-size: 13px;
+  transition: all 0.3s;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+input:focus{
+  /*border: 2px solid #19058d;*/
+  border-style: solid;
+  border-color: #5b08a7;
+}
+
+/*Estilos dos Botões*/
+.btn-add,
+.btn-edit,
+.btn-delete,
+.btn-show,
+.btn-cancel{
   padding: 0.5rem 0.75rem;
   font-size: 14px;
   border-radius: 4px;
 }
 
-.btn-add {
-  background-color: #4CAF50;
+.btn-add{
+  background-color: #00a762;
+  color: white
 }
 
 .btn-delete{
-  background-color: #f44336;
+  background-color: #b62424;
 }
 
 .btn-show{
-  background-color: #8DA9C4;
+  background-color:rgb(59, 59, 59);
+  color: #fff;
 }
 
 .btn-cancel{
-  background-color: #36e4f4;
-  color:#fff
+  background-color: rgb(46,174,184);
+  color: #fff;
 }
 
-/* estilo para tabela */
-table {
+/*Estilo para Tabela*/
+table{
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
 }
 
-th, td {
-  padding: 10px 1rem;
-  text-align: left;
+th, td{
+  padding: 10px;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  border-top: 1px solid #ddd;
   border-left: 1px solid #ddd;
-}
-
-th{
-  text-align: center;
+  border-top: 1px solid #ddd;
+  text-align: left;
 }
 
 tbody tr:hover{
-  background-color: #D9DFD8;
+  background-color: #f6f1f1;
 }
 
 table > thead > tr > th{
   text-align: left;
   padding: 0.5rem 0.5rem;
-  background-color: #13315C;
-  color: #EEF4ED;
+  background-color: #0b7d0e;
+  color: white;
 }
 
-table > thead > th > td.center{
+table > thead > tr > th.center{
   padding: 0.5rem 0.5rem;
   border-bottom: 1px solid #efefef;
   text-align: center;
   vertical-align: middle;
+
 }
 
-table > thead > th > td.center{
+table > thead > tr > td.center{
   padding: 0.5rem 0.5rem;
   border-bottom: 1px solid #efefef;
   text-align: center;
   vertical-align: middle;
+  
 }
 
-th.actions, td.actions {
+th.actions, td.actions{
   width: 1%;
-  white-space: nowrap;
+  white-space: nowrap; /*Não deixa que o botão quebre a linha*/
   text-align: center;
-  min-height: 100vh;;
+  min-height: 100vh;
 }
 
-.display {
+.display{
   display: flex;
   justify-content: center;
-  padding: 20px;;
+  padding: 20px;
 }
 
-.card {
+.card{
   width: 70%;
   max-width: 100%;
   min-height: 30%;
   background-color: #fff;
   border-radius: 0.5rem;
-  box-shadow: 0.5px 0.5px 2px rgba(0,0,0);
+  box-shadow: 0.5px 0.5px 1.5px rgb(0, 0, 0);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
-  margin-top: 0.5rem;;
-}}
+  margin-top: 0.5rem;
+}
