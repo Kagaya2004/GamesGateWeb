@@ -13,7 +13,7 @@ function UsuarioFormShow() {
    
    if (id){
      useEffect(() => {
-       axiosClient.get(`/user/show/${id}`)
+       axiosClient.get(`/usuario/show/${id}`)
          .then(({data}) => {
            setUsuario(data.data);
          }).catch((error) => {
@@ -24,7 +24,7 @@ function UsuarioFormShow() {
  
      const OnSubmit = (e) => {
        e.preventDefault();
-       navigate('/user/index');
+       navigate('/usuario/index');
      }
   
   return (
@@ -44,7 +44,7 @@ function UsuarioFormShow() {
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/usuario/index'>
               Cancelar
           </Link>
         </form>

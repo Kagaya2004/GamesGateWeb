@@ -13,7 +13,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
   
   if (id){
     useEffect(() => {
-      axiosClient.get(`/user/show/${id}`)
+      axiosClient.get(`/usuario/show/${id}`)
         .then(({data}) => {
           setUsuario(data.data);
         }).catch((error) => {
@@ -24,16 +24,16 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
     const OnSubmit = (e) => {
       e.preventDefault();
-      axiosClient.delete(`/user/destroy/${id}`)
+      axiosClient.delete(`/usuario/destroy/${id}`)
         .then(() => {
           setUsuario({});
-          navigate('/user/index');
+          navigate('/usuario/index');
         }).catch((error) => {
           console.log(error);
         })
     }
     const OnCancel = () => {
-      navigate('/user/index');
+      navigate('/usuario/index');
     } 
   
   return (
@@ -53,7 +53,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
           <Link 
             type='button'
             className='btn btn-cancel'
-            to='/user/index'>
+            to='/usuario/index'>
               Cancelar
           </Link>
         </form>

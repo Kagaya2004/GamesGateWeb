@@ -13,7 +13,7 @@ function UsuarioFormUpdate() {
    
    if (id){
      useEffect(() => {
-       axiosClient.get(`/user/show/${id}`)
+       axiosClient.get(`/usuario/show/${id}`)
          .then(({data}) => {
            setUsuario(data.data);
          }).catch((error) => {
@@ -24,16 +24,16 @@ function UsuarioFormUpdate() {
  
      const OnSubmit = (e) => {
        e.preventDefault();
-       axiosClient.put(`/user/update/${id}`)
+       axiosClient.put(`/usuario/update/${id}`)
          .then((data) => {
            setUsuario(data.data);
-           navigate('/user/index');
+           navigate('/usuario/index');
          }).catch((error) => {
            console.log(error);
          })
      }
      const OnCancel = () => {
-       navigate('/user/index');
+       navigate('/usuario/index');
      }
   
   return (
@@ -63,7 +63,7 @@ function UsuarioFormUpdate() {
            <Link 
              type='button'
              className='btn btn-cancel'
-             to='/user/index'>
+             to='/usuario/index'>
                Cancelar
            </Link>
          </form>

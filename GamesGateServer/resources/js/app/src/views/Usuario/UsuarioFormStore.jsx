@@ -14,11 +14,11 @@ function UsuarioFormStore() {
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.post(`/user/store`, user)
+        axiosClient.post(`/usuario/store`, user)
             .then(() =>{
                 setUsuario({});
                 console.log('Usuário incluído com sucesso');
-                navigate('/user/index')
+                navigate('/usuario/index')
             }).catch((error)=>{
                 console.log(error);
             })
@@ -28,7 +28,7 @@ function UsuarioFormStore() {
  
     const onCancel = (e) => {
         //e.preventDefault();
-        navigate('/user/index');
+        navigate('/usuario/index');
         //console.log(e);
         //console.log("Passando pela função onSubmit")
     }
@@ -105,7 +105,7 @@ function UsuarioFormStore() {
                         <Link
                             type='button' 
                             className='btn btn-cancel'
-                            to='/user/index'>
+                            to='/usuario/index'>
                                 Cancelar
                         </Link>
                     </form>

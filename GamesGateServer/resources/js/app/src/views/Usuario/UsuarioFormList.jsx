@@ -6,7 +6,7 @@ import { data, Link } from 'react-router-dom';
   const [Usuarios, setUsuarios] = React.useState([]);
  
   const getUsuarios = () => {
-    axiosClient.get('/user/index')
+    axiosClient.get('/usuario/index')
               .then(({data}) => {
                 setUsuario(data.data);
               }
@@ -30,7 +30,7 @@ import { data, Link } from 'react-router-dom';
         }}>
 
           <h1>Lista de Usuários</h1>
-          <Link to="/user/store" className='btn-add'>Store</Link>
+          <Link to="/usuario/store" className='btn-add'>Store</Link>
         </div>
         <table>
           
@@ -56,15 +56,15 @@ import { data, Link } from 'react-router-dom';
                     <td>{usuario.email}</td>
 
                     <td className='center actions'>
-                      <Link to={`/user/update/${usuario.id}`} className='btn-edit'>Update</Link>
+                      <Link to={`/usuario/update/${usuario.id}`} className='btn-edit'>Update</Link>
                     </td>
 
                     <td className='center actions'>
-                      <Link to={`/user/destroy/${usuario.id}`} className='btn-delete'>Destroy</Link>
+                      <Link to={`/usuario/destroy/${usuario.id}`} className='btn-delete'>Destroy</Link>
                     </td>
                   
                     <td className='center actions'>
-                      <Link to={`/user/show/${usuario.id}`} className='btn-show'>Show</Link>
+                      <Link to={`/usuario/show/${usuario.id}`} className='btn-show'>Show</Link>
                     </td>
 
                   </tr>
