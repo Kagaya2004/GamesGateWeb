@@ -3,7 +3,7 @@ import axiosClient from '../../axiosClient';
 import { data, Link } from 'react-router-dom';
  
  function UsuarioFormList() {
-  const [Usuarios, setUsuario] = React.useState([]);
+  const [Usuario, setUsuario] = React.useState([]);
  
   const getUsuarios = () => {
     axiosClient.get('/usuario/index')
@@ -45,8 +45,8 @@ import { data, Link } from 'react-router-dom';
 
           <tbody>
             {
-              Usuarios.length > 0 ? (
-                Usuarios.map((usuario, index) => (
+              Usuario.length > 0 ? (
+                Usuario.map((usuario, index) => (
                   <tr key={index}>
 
                     <td>{usuario.id}</td>

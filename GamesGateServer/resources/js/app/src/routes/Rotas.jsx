@@ -11,9 +11,9 @@ return (
     <Routes>
         <Route path="/usuario/index" element={<UsuarioFormList/>} />
         <Route path="/usuario/store" element={<UsuarioFormStore/>} />
-        <Route path="/usuario/update:id" element={<UsuarioFormUpdate/>} />
-        <Route path="/usuario/show:id" element={<UsuarioFormShow/>} />
-        <Route path="/usuario/destroy:id" element={<UsuarioFormDestroy/>} />
+        <Route path="/usuario/update/:id" element={<UsuarioFormUpdate/>} />
+        <Route path="/usuario/show/:id" element={<UsuarioFormShow/>} />
+        <Route path="/usuario/destroy/:id" element={<UsuarioFormDestroy/>} />
     </Routes>
 )
 }

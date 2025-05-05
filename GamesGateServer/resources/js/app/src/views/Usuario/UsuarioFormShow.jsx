@@ -1,10 +1,10 @@
 import { useState, Fragment, useEffect } from 'react'
 import axiosClient from '../../axiosClient'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
  
 function UsuarioFormShow() {
   const navigate = useNavigate();
-   const [usuario, setUsuario] = useState({
+   const [Usuario, setUsuario] = useState({
      id: null,
      name: '',
      email: ''
@@ -31,21 +31,21 @@ function UsuarioFormShow() {
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {usuario.id && <h1>Exclusão de usuário: {usuario.name}  </h1>}
+          {Usuario.id && <h1>Exclusão de usuário: {Usuario.nome}  </h1>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
-          <input defaultValue={usuario.name} placeholder='Nome do Usuário' readOnly={true}/>
-          <input defaultValue={usuario.email} placeholder='E-mail de Usuário' readOnly={true}/>
+          <input defaultValue={Usuario.nome} placeholder='Nome do Usuário' readOnly={true}/>
+          <input defaultValue={Usuario.email} placeholder='E-mail de Usuário' readOnly={true}/>
           <button 
             className='btn btn-delete'>
               Excluir
           </button>
-          <Link 
-            type='button'
-            className='btn btn-cancel'
-            to='/usuario/index'>
-              Cancelar
+          <Link
+              type='button' 
+              className='btn btn-cancel'
+              to='/usuario/index'>
+                  Cancelar
           </Link>
         </form>
       </div>

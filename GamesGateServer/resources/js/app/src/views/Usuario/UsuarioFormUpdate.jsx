@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
  
 function UsuarioFormUpdate() {
   const navigate = useNavigate();
-   const [usuario, setUsuario] = useState({
+   const [Usuario, setUsuario] = useState({
      id: null,
      name: '',
      email: ''
@@ -40,21 +40,21 @@ function UsuarioFormUpdate() {
     <Fragment>
        <div className='display'>
          <div className='card animated fadeInDown'>
-           {usuario.id && <h1>Exclusão de usuário: {usuario.name}  </h1>}
+           {Usuario.id && <h1>Exclusão de usuário: {Usuario.nome}  </h1>}
          </div>
  
          <form onSubmit={(e)=>OnSubmit(e)}>
            <input 
-             defaultValue={usuario.name} 
+             defaultValue={Usuario.nome} 
              placeholder='Nome do Usuário'
              onChange={
-               e => setUsuario({ ...usuario, name: e.target.value })
+               e => setUsuario({ ...Usuario, nome: e.target.value })
              } />
            <input 
-             defaultValue={usuario.email} 
+             defaultValue={Usuario.email} 
              placeholder='E-mail de Usuário'
              onChange={
-               e => setUsuario({ ...usuario, email: e.target.value })
+               e => setUsuario({ ...Usuario, email: e.target.value })
              } />
            <button 
              className='btn btn-edit'>

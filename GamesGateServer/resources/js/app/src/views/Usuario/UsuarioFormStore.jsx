@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function UsuarioFormStore() {
     const navigate = useNavigate();
  
-    const [usuario, setUsuario] = useState({
+    const [Usuario, setUsuario] = useState({
         id:null,
         name:'',
         email:'',
@@ -42,60 +42,60 @@ function UsuarioFormStore() {
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <input
                             type="text"
-                            value={usuario.name}
+                            value={Usuario.name}
                             placeholder="Nome Completo"
                             onChange={
                                 e => setUsuario({
-                                    ...usuario, name:e.target.value
+                                    ...Usuario, nome:e.target.value
                                 })
                             } 
                         />
                         <input
                             type="text"
-                            value={usuario.username}
+                            value={Usuario.username}
                             placeholder="Username de Usuário*"
                             onChange={
                                 e => setUsuario({
-                                    ...usuario, username:e.target.value
+                                    ...Usuario, username:e.target.value
                                 })
                             }
                         />
                         <input
                             type='datetime'
-                            value={usuario.dataNascimento}
+                            value={Usuario.dataNascimento}
                             placeholder="Data de Nascimento"
                             onChange={
                                 e => setUsuario({
-                                    ...usuario, dataNascimento:e.target.value
+                                    ...Usuario, dataNascimento:e.target.value
                                 })
                             }
                         />
                         <input
-                            value={usuario.email}
+                            value={Usuario.email}
                             placeholder="Email"
                             onChange={
                                 e => setUsuario({
-                                    ...usuario, email:e.target.value
+                                    ...Usuario, email:e.target.value
                                 })
                             } 
                         />
                         <input
                             type="password"
-                            value={usuario.password}
+                            value={Usuario.password}
                             placeholder="Senha"
                             onChange={
                                 e => setUsuario({
-                                    ...usuario, password:e.target.value
+                                    ...Usuario, password:e.target.value
                                 })
                             } 
                         />
                         <input 
                             type="text"
-                            value={usuario.descricao}
+                            value={Usuario.descricao}
                             placeholder="Descrição"
                             onChange={
                                 e => setUsuario({
-                                    ...usuario, descricao:e.target.value
+                                    ...Usuario, descricao:e.target.value
                                 })
                             }
                         />

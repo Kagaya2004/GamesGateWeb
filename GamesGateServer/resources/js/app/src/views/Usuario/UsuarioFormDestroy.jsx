@@ -44,7 +44,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>
-          <input defaultValue={usuario.name} placeholder='Nome do Usuário' readOnly={true}/>
+          <input defaultValue={usuario.nome} placeholder='Nome do Usuário' readOnly={true}/>
           <input defaultValue={usuario.email} placeholder='E-mail de Usuário' readOnly={true}/>
           <button 
             className='btn btn-delete'>
