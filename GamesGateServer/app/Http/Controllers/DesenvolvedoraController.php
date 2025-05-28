@@ -56,7 +56,7 @@ class DesenvolvedoraController extends Controller
         $validator = Validator::make($request->all(),[
             'nome'=>'required|string|max:255',
             'email'=>'required|email|string|max:255|unique:desenvolvedoras,email',
-            'pais'=>'required|string|max:255|desenvolvedoras,pais',
+            'pais'=>'required|string|max:255|',
             'site'=>'sometimes|required|string|max:255',
             'descricao'=>'required|string',
         ]);
@@ -143,7 +143,7 @@ class DesenvolvedoraController extends Controller
 
         $data->nome = $request->nome ?? $data->nome;
         $data->email = $request->email ?? $data->email;
-        $data->pais = $request->pais ?? $data->username;
+        $data->pais = $request->pais ?? $data->pais;
         $data->descricao = $request->descricao ?? $data->descricao;
         $data->site = $request->site ?? $data->site;
 

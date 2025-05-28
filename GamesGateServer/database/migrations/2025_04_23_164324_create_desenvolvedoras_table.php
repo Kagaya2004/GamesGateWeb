@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('desenvolvedoras', function (Blueprint $table) {
             $table->id();
+            $table->string('nome')->unique();
+            $table->string('email')->unique();
+            $table->string('pais');
+            $table->string('site')->nullable();
+            $table->string('descricao')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
