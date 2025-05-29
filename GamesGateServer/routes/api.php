@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\DesenvolvedoraController;
+use App\Http\Controllers\JogoController;
+use App\Http\Controllers\GeneroController;
 
 Route::get('/usuario', function (Request $request) {
     return $request->usuario();
