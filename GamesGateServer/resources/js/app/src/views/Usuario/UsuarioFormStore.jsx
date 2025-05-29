@@ -14,7 +14,7 @@ function UsuarioFormStore() {
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.post(`/usuario/store`, user)
+        axiosClient.post(`/usuario/store`, usuario)
             .then(() =>{
                 setUsuario({});
                 console.log('Usuário incluído com sucesso');
