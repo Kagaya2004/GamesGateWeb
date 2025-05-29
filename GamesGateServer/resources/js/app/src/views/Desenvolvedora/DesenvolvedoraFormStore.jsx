@@ -7,7 +7,7 @@ function DesenvolvedoraFormStore() {
  
     const [Desenvolvedora, setDesenvolvedora] = useState({
         id:null,
-        name:'',
+        nome:'',
         email:'',
     });
 
@@ -42,7 +42,7 @@ function DesenvolvedoraFormStore() {
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <input
                             type="text"
-                            value={Desenvolvedora.name}
+                            value={Desenvolvedora.nome}
                             placeholder="Nome"
                             onChange={
                                 e => setDesenvolvedora({
