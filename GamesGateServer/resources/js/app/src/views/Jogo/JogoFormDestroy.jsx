@@ -6,7 +6,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
   const navigate = useNavigate();
   const [Jogo, setJogo] = useState({
     id: null,
-    name: '',
+    nome: '',
     email: ''
   })
   const { id } = useParams();
@@ -40,7 +40,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
     <Fragment>
       <div className='display'>
         <div className='card animated fadeInDown'>
-          {Jogo.id && <h1>Exclusão de jogo: {Jogo.name}  </h1>}
+          {Jogo.id && <h1>Exclusão de jogo: {Jogo.nome}  </h1>}
         </div>
 
         <form onSubmit={(e)=>OnSubmit(e)}>

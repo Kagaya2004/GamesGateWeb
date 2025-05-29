@@ -7,14 +7,14 @@ function JogoFormStore() {
  
     const [Jogo, setJogo] = useState({
         id:null,
-        name:'',
+        nome:'',
         email:'',
     });
 
     // Função do tipo Anônima
     const onSubmit = (e) => {
         e.preventDefault();
-        axiosClient.post(`/jogo/store`, user)
+        axiosClient.post(`/jogo/store`, jogo)
             .then(() =>{
                 setJogo({});
                 console.log('Jogo incluído com sucesso');
@@ -42,7 +42,7 @@ function JogoFormStore() {
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <input
                             type="text"
-                            value={Jogo.name}
+                            value={Jogo.nome}
                             placeholder="Jogo"
                             onChange={
                                 e => setJogo({

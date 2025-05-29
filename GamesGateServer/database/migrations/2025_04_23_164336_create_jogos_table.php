@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('jogos', function (Blueprint $table) {
             $table->id();
+            $table->datetime('dataLancamento');
+            $table->string('nome')->unique();
+            $table->string('descricao');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

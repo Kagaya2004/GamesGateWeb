@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Models\Jogo;
 
 class JogoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $page = $request->get('page', '1');
         $pageSize = $request->get('pageSize', '5');
@@ -67,8 +71,7 @@ class JogoController extends Controller
         $data = Jogo::create([
             'nome'=>$request->nome,
             'descricao'=>$request->descricao,
-            'dataLancamento'=>$request->dataLançamento,
-            'status'=>$request->status,
+            'dataLancamento'=>$request->dataLancamento,
         ]);
 
         return response()->json([
@@ -109,7 +112,7 @@ class JogoController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(),[
-            'nome'=>'sometimes|required|string|max:255',
+            'nome'=>'sometimes|string|max:255',
             'descricao'=>'sometimes|string',
             'dataLancamento'=>'sometimes|date',
         ]);

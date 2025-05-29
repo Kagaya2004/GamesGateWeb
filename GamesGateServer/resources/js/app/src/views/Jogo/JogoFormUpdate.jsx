@@ -56,6 +56,12 @@ function JogoFormUpdate() {
              onChange={
                e => setJogo({ ...Jogo, email: e.target.value })
              } />
+             <input 
+             defaultValue={Jogo.dataLancamento} 
+             placeholder='Data de Lançamento do Jogo'
+             onChange={
+               e => setJogo({ ...Jogo, dataLancamento: e.target.value })
+             } />
            <button 
              className='btn btn-edit'>
                Salvar
